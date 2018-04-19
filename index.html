@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mosaics</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>Mosaic App</header>
+
+    <form id="imgForm">
+      <input id="inputDivision" type="text" placeholder="qty of divisions you would like">
+      <input id="imgFile" type="file" placeholder="Select Image File" onchange="placeImage()">
+    </form>
+    <img id="imgVisual"/>
+    <div id="mosaicOverlay"></div>
+    <button id="restartBtn" type="button" onclick="window.location.href = 'http://127.0.0.1:8080'">Restart</button>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>

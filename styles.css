@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  text-align: center;
+}
+
+header {
+  font-size: 75px;
+  font-family: 'Oswald';
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgba(0,0,0,0.5);
+}
+
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input, button {
+  width: 300px;
+  padding: 16px;
+  font-size: 24px;
+  font-family: 'Oswald';
+  text-align: center;
+  border: 1px solid grey;
+  margin: auto;
+}
+button {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  opacity: 0.5;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+img {
+  width: 300px;
+  height: auto;
+  margin: auto;
+}
+#mosaicOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left:0;
+  right: 0;
+  margin: auto;
+  height: 100vh;
+  width: 100vh;
+  z-index: -100;
+}
+.mosBlock {
+  float: left;
+}
