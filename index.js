@@ -5,7 +5,7 @@ const http = require('http');
 var CronJob = require('cron').CronJob;
 
 var port = process.env.PORT || 3000;
-var url = process.env.PORT ? "https://mosaic-fun.herokuapp.com/" : "http://localhost:" + port;
+var url = process.env.PORT ? "http://mosaic-fun.herokuapp.com/" : "http://localhost:" + port;
 var app = express();
 
 app.use(compression());
