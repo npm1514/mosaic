@@ -1,4 +1,5 @@
 var colorList = [];
+var uniqueColorList = [];
 var divisibles = 15;
 
 function placeImage(){
@@ -20,7 +21,8 @@ function getCanvasData(){
   canvas.width = img.width;
   canvas.height = img.height;
   canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
-
+  document.getElementById('mosaicOverlay').style.height = img.height + "px";
+  document.getElementById('mosaicOverlay').style.width = img.width + "px";
 
   for (var k = 0; k < divisibles; k++) {
     for (var j = 0; j < divisibles; j++){
@@ -40,22 +42,31 @@ function getCanvasData(){
         totalb += data[i+2];
         totala += data[i+3]/255;
       }
-      colorList.push('rgba('+Math.round(totalr/multiplier)+','+Math.round(totalb/multiplier)+','+Math.round(totalg/multiplier)+','+totala/multiplier+')');
+      colorList.push('rgb('+Math.round(totalr/multiplier)+','+Math.round(totalg/multiplier)+','+Math.round(totalb/multiplier)+')');
     }
   }
-  placeMosaic();
+
+  uniqueColorList = colorList.filter(function (value, index, self) {
+    return self.indexOf(value) === index;
+  }).sort();
+  console.log(uniqueColorList)
+  placeMosaic(img.height, img.width);
 }
 
 
 
-function placeMosaic(){
+function placeMosaic(height, width){
   var mosOL = document.getElementById('mosaicOverlay');
   mosOL.innerHTML = "";
   for (var i = 0; i < (divisibles*divisibles); i++) {
     var div = document.createElement('div');
     div.className = "mosBlock";
-    div.style.height = (100/divisibles) + "vh";
-    div.style.width = (100/divisibles) + "vh";
+    div.style.width = (width/divisibles) + "px";
+    div.style.height = div.style.width;
+    var colorNum = uniqueColorList.findIndex(function (color) {
+      return color ==  colorList[i];
+    }) + 1;
+    div.innerText = colorNum;
     div.style.backgroundColor = colorList[i];
     mosOL.appendChild(div);
   }
