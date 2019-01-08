@@ -29,7 +29,7 @@ input, button {
 button {
   display: none;
   opacity: 0.5;
-  margin: auto;
+  margin: 10px auto;
 }
 img {
   width: auto;
@@ -37,15 +37,8 @@ img {
   margin: auto;
 }
 #mosaicOverlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left:0;
-  right: 0;
   margin: auto;
-  z-index: -100;
   box-sizing: border-box;
-  transform: scale(100vh);
 }
 .mosBlock {
   float: left;

@@ -3,7 +3,8 @@ var uniqueColorList = [];
 var divisiblesWidth = 15;
 var divisiblesHeight = 15;
 var canvasWidth = "";
-var accuracy = 50;
+var accuracy = 80;
+var dblclickedId = "";
 
 function placeImage(){
   var inputDivision = document.getElementById('inputDivision').value;
@@ -79,6 +80,8 @@ function placeMosaic(height, width){
   for (var i = 0; i < (divisiblesWidth*divisiblesHeight); i++) {
     var div = document.createElement('div');
     div.className = "mosBlock";
+    div.ondblclick = doubleClick;
+    div.id = "mosBlock" + i;
     div.style.width = (width/divisiblesWidth) + "px";
     div.style.height = (height/divisiblesHeight) + "px";
     var colorNum = uniqueColorList.findIndex(function (color) {
@@ -94,8 +97,8 @@ function placeMosaic(height, width){
   var printBtn = document.getElementById('printBtn');
   imgForm.style.display = "none";
   imgVisual.style.display = "none";
-  restartBtn.style.display = "block";
-  printBtn.style.display = "block";
+  restartBtn.style.display = "inline-block";
+  printBtn.style.display = "inline-block";
 
 }
 function printImage(){
@@ -105,4 +108,15 @@ function printImage(){
           'height': 170
       });
       doc.save('~/Desktop/sample-file.pdf');
+}
+function doubleClick(e){
+  dblclickedId = e.target.id;
+  document.getElementById(dblclickedId).style.opacity = 0.5;
+  document.getElementById('mosaicOverlay').addEventListener('click', colorChanger)
+}
+function colorChanger(e){
+  document.getElementById(dblclickedId).style.opacity = 1;
+  document.getElementById(dblclickedId).style.backgroundColor = e.target.style.backgroundColor;
+  document.getElementById(dblclickedId).innerText = e.target.innerText;
+  document.getElementById('mosaicOverlay').removeEventListener('click', colorChanger)
 }

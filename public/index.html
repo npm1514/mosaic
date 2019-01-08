@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header>Mosaic App</header>
-
+    <button id="restartBtn" type="button" onclick="window.location.reload();">Restart</button>
+    <button id="printBtn" type="button" onclick="printImage()">Print</button>
+    <div id="mosaicOverlay"></div>
     <form id="imgForm">
       <input id="inputDivision" type="text" placeholder="Number of Divisions">
       <input id="colorAccuracy" type="text" placeholder="Color Quality 1-100">
       <input id="imgFile" type="file" placeholder="Select Image File" onchange="placeImage()">
     </form>
     <img id="imgVisual"/>
-    <div id="mosaicOverlay"></div>
-    <button id="restartBtn" type="button" onclick="window.location.reload();">Restart</button>
-    <button id="printBtn" type="button" onclick="printImage()">Print</button>
+
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
     <script src="app.js" charset="utf-8"></script>
   </body>
