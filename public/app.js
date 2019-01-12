@@ -1,7 +1,7 @@
 var colorList = [];
 var uniqueColorList = [];
-var divisiblesWidth = 15;
-var divisiblesHeight = 15;
+var divisiblesWidth = 20;
+var divisiblesHeight = 20;
 var canvasWidth = "";
 var accuracy = 80;
 var dblclickedId = "";
@@ -102,12 +102,22 @@ function placeMosaic(height, width){
 
 }
 function printImage(){
-  var doc = new jsPDF('p', 'mm', 'a4');
-      doc.fromHTML(document.getElementById('mosaicOverlay').innerHTML, 15, 15, {
-          'width': 170,
-          'height': 170
-      });
-      doc.save('~/Desktop/sample-file.pdf');
+  document.getElementById('printCanvas').remove();
+  var mosaic = document.querySelector("#mosaicOverlay");
+  html2canvas(mosaic).then(canvas => {
+    canvas.id = "printCanvas";
+    document.body.appendChild(canvas)
+    var printCanvas = document.getElementById('printCanvas');
+    var orientation = mosaic.width > mosaic.height ? "l" : "p"
+    var doc = new jsPDF(
+      orientation,
+      "px",
+      [(printCanvas.width)*4/3 + 60, (printCanvas.height)*4/3 + 60]
+    );
+    doc.addImage(printCanvas, 'JPEG', 20, 20, printCanvas.width, printCanvas.height);
+    doc.save('mosaic_'+new Date().toISOString()+'.pdf');
+  });
+
 }
 function doubleClick(e){
   dblclickedId = e.target.id;
