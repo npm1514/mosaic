@@ -119,11 +119,17 @@ function printImage(){
   });
 
 }
+
 function doubleClick(e){
+  e.preventDefault();
   dblclickedId = e.target.id;
   document.getElementById(dblclickedId).style.opacity = 0.5;
   document.getElementById('mosaicOverlay').addEventListener('click', colorChanger)
+  document.onselectstart = function() { return false; };
+  e.target.ondragstart = function() { return false; };
+  return false;
 }
+
 function colorChanger(e){
   document.getElementById(dblclickedId).style.opacity = 1;
   document.getElementById(dblclickedId).style.backgroundColor = e.target.style.backgroundColor;
