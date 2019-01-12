@@ -102,7 +102,7 @@ function placeMosaic(height, width){
 
 }
 function printImage(){
-  document.getElementById('printCanvas').remove();
+  if(document.getElementById('printCanvas')) document.getElementById('printCanvas').remove();
   var mosaic = document.querySelector("#mosaicOverlay");
   html2canvas(mosaic).then(canvas => {
     canvas.id = "printCanvas";
